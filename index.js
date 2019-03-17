@@ -15,15 +15,14 @@ fs.readFile('./p022_names.txt', (error, data) => {
 });
 
 const processFile = () => {
-  const sortedNames = names.sort();
-  const valuedNames = sortedNames.map((name, index) => (index + 1) * alphabeticalValue(name));
+  const valuedNames = names.sort().map((name, index) => (index + 1) * alphabeticalValue(name));
   return valuedNames.reduce((prev, current) => prev + current);
 };
 
 const alphabeticalValue = name => {
-  const alphabet = '.ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
   return name
     .split('')
-    .map(char => alphabet.indexOf(char))
+    .map(char => alphabet.indexOf(char) + 1)
     .reduce((prev, current) => prev + current);
 };
